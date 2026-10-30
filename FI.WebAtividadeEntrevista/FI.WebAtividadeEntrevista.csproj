@@ -400,6 +400,15 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
   </Target>
+  <!-- Garante o bin\roslyn\csc.exe mesmo quando o .props do pacote não foi importado
+       (clone novo: o VS avalia o projeto antes de restaurar os pacotes). Sem isso, o F5
+       falha com "Não foi possível localizar ... bin\roslyn\csc.exe". -->
+  <Target Name="CopiarRoslyn" AfterTargets="Build">
+    <ItemGroup>
+      <RoslynFiles Include="$(MSBuildProjectDirectory)\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\tools\RoslynLatest\*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(RoslynFiles)" DestinationFolder="$(MSBuildProjectDirectory)\bin\roslyn" SkipUnchangedFiles="true" ContinueOnError="true" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
