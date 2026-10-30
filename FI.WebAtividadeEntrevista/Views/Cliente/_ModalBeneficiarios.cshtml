@@ -1,0 +1,48 @@
+﻿<div class="modal fade" id="modalBeneficiarios" tabindex="-1" role="dialog" aria-labelledby="tituloBeneficiarios">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="tituloBeneficiarios">Beneficiários</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="BenefCPF">CPF:</label>
+                            <input type="text" class="form-control" id="BenefCPF" placeholder="Ex.: 010.011.111-00" maxlength="14" inputmode="numeric" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="BenefNome">Nome:</label>
+                            <input type="text" class="form-control" id="BenefNome" placeholder="Ex.: Maria" maxlength="50" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label> </label><br />
+                        <button type="button" class="btn btn-sm btn-success" id="btnIncluirBenef">Incluir</button>
+                        <button type="button" class="btn btn-sm btn-default hidden" id="btnCancelarBenef">Cancelar</button>
+                    </div>
+                </div>
+
+                <div id="benefErro" class="alert alert-danger hidden" role="alert"></div>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>CPF</th>
+                            <th>Nome</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="benefLista"></tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-danger pull-left" id="btnLimparBenef">Limpar</button>
+                <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>
